@@ -1,0 +1,52 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{{ moment().lang('cn') }}
+{% endblock %}
+
+navbar-dirbar{ height: 40px;opacity:0}
+ 
+{% block navbar %}
+
+<div class="btn-group btn-group-justified navbar-fixed-bottom" role="group" aria-label="...">
+  <div class="btn-group dropup" role="group">
+
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      往期
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" style="height:250px; width:360px;overflow:scroll;text-align:center;opacity:0.90;filter:alpha(opacity=90);">
+ 	{% for menu_data in menu_data %}
+    <li class="list-group-item"><a href='{{ menu_data.url|safe }}&type={{ type }}'>{{ menu_data.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+  </div>
+  
+  <div class="btn-group" role="group">
+    <a href='/hzlv/?url={{ curr_page }}&type={{ type }}' class="btn btn-primary active" role="button">版面</a>
+  </div>
+  
+   <div class="btn-group" role="group">
+    <a href='/hzlvlist/?url={{ curr_page }}&type={{ type }}' class="btn btn-default active" role="button">目录</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block body_attribs %}{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}

@@ -2,6 +2,18 @@
 
 import re
 
+#旅游版的类
+class HzlvPage():
+	title = ''
+	url = ''
+	pageNum = 0
+	start = 0
+	def __init(self,title,url,pageNum=4,start=0):
+		self.title = title
+		self.url = url
+		self.pageNum = pageNum
+		self.start = start
+
 #内容的类
 class Content():
 	title = ''
@@ -50,4 +62,6 @@ class PageType():
 		elif url == '/hzwb/':
 			self.url = 'hzwb'	
 		elif url == '/main/':
-			self.url = 'hzrb'		
+			self.url = 'hzrb'
+		elif url == '/hzlv/':
+			self.url = 'hzrb'
